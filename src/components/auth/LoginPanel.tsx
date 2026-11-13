@@ -252,7 +252,7 @@ export function LoginPanel() {
             ) : null}
 
             <Button type="submit" size="md" full loading={submitting} className="min-h-9 sm:min-h-11">
-              Send Verification Code
+              Send code
             </Button>
           </form>
 

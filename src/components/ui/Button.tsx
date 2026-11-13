@@ -6,7 +6,7 @@ type ButtonSize = 'sm' | 'md' | 'lg';
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-bamboo-900 text-cream-50 shadow-[0_8px_22px_-12px_rgba(7,28,20,0.55)] hover:bg-bamboo-800 active:bg-bamboo-950',
+    'bg-bamboo-900 text-cream-50 hover:bg-bamboo-800 active:bg-bamboo-950',
   secondary:
     'bg-cream-100 text-ink-900 border border-ink-950/10 hover:bg-cream-200 active:bg-cream-300',
   outline:
