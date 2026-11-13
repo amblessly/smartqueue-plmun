@@ -1,0 +1,20 @@
+---
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+const { title = 'SmartQueue' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>{title}</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/smartqueue-logo.png" />
+    <ViewTransitions />
+  </head>
+  <body class="min-h-screen bg-white text-slate-900">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { ProfilePage } from '@/components/profile/ProfilePage';
+---
+
+<AppLayout
+  title="Profile — SmartQueue"
+  description="Manage your PLMun student details, preferred offices, alerts, and app settings."
+>
+  <ProfilePage client:only="react" />
+</AppLayout>

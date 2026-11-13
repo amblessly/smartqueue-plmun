@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { LoginPanel } from '@/components/auth/LoginPanel';
+import { BrandWordmark, PlmunIdentifier } from '@/components/brand/Brand';
+import { BellRing, Clock3, ShieldCheck, Users } from 'lucide-react';
+import { pageTransition } from '@/lib/motion';
+
+const points = [
+  { icon: Users, title: 'One shared queue', text: 'Digital, QR, kiosk, and walk-in entries line up together.' },
+  { icon: Clock3, title: 'Track from anywhere', text: 'See your place and come back when it’s almost your turn.' },
+  { icon: BellRing, title: 'Alerts that matter', text: 'Get a nudge when you’re next and when you’re called.' },
+];
+---
+
+<BaseLayout
+  title="Sign in — SmartQueue for PLMun"
+  description="Sign in with your PLMun email or continue as a guest to get a campus queue number."
+  noIndex
+>
+  <div class="grid h-dvh lg:overflow-hidden lg:grid-cols-[1.05fr_0.95fr]" transition:name="page" transition:animate={pageTransition}>
+    <section class="relative hidden overflow-hidden bg-bamboo-950 lg:flex lg:flex-col">
+      <img
+        src="/campus-background.png"
+        alt=""
+        width="1600"
+        height="1200"
+        class="absolute inset-0 h-full w-full object-cover object-[56%_center]"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-[linear-gradient(160deg,rgba(7,28,20,0.96)_0%,rgba(7,28,20,0.84)_48%,rgba(7,28,20,0.95)_100%)]"></div>
+      <div class="absolute inset-0 opacity-[0.1] [background-image:radial-gradient(rgba(245,242,233,0.7)_0.7px,transparent_0.7px)] [background-size:22px_22px]"></div>
+
+      <div class="relative flex flex-1 flex-col p-8 xl:p-10">
+        <a href="/" aria-label="SmartQueue home" class="inline-flex self-start">
+          <BrandWordmark light />
+        </a>
+
+        <div class="my-auto max-w-[30rem] py-6">
+          <p class="eyebrow text-white">Campus queues, kept simple</p>
+          <h2 class="mt-4 text-[3.2rem] font-extrabold leading-[0.98] tracking-[-0.055em] text-white xl:text-[3.6rem]">
+            The line can wait.
+            <span class="mt-1 block font-display italic tracking-[-0.02em] text-white">
+              You don’t have to.
+            </span>
+          </h2>
+          <p class="mt-5 max-w-md text-sm leading-relaxed text-white">
+            SmartQueue gives you a number for PLMun campus services, shows you how the line is
+            moving, and tells you when to head back.
+          </p>
+
+          <div class="mt-6 space-y-2.5">
+            {points.map((point) => {
+              const Icon = point.icon;
+              return (
+                <div class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.055] px-4 py-3.5 backdrop-blur-sm">
+                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-bamboo-200">
+                    <Icon size={15} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p class="text-xs font-bold text-white">{point.title}</p>
+                    <p class="mt-0.5 text-[0.6875rem] leading-relaxed text-white">{point.text}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div class="flex items-end justify-between gap-4 border-t border-white/10 pt-5">
+          <PlmunIdentifier light />
+          <p class="max-w-[13rem] text-right text-[0.5625rem] leading-relaxed text-white">
+            Independent student prototype. Not an official PLMun service.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative flex min-h-dvh flex-col bg-cream-50 lg:min-h-0">
+      <div class="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(70%_100%_at_50%_0%,rgba(43,122,88,0.09),transparent_70%)]" aria-hidden="true"></div>
+
+      <header class="relative flex items-center justify-between px-5 py-2 lg:hidden">
+        <a href="/" aria-label="SmartQueue home">
+          <BrandWordmark compact />
+        </a>
+        <span class="rounded-full border border-bamboo-900/10 bg-white px-2.5 py-1 text-[0.5625rem] font-bold uppercase tracking-[0.12em] text-bamboo-800">
+          PLMun
+        </span>
+      </header>
+
+      <div class="relative flex flex-1 items-center justify-center px-3 py-2 sm:px-8 lg:py-6">
+        <div class="w-full max-w-[22rem] sm:max-w-[24rem] lg:max-w-[27rem]">
+          <div class="rounded-2xl border border-ink-950/8 bg-white p-3 shadow-card sm:p-5 lg:p-6">
+            <LoginPanel client:only="react" />
+          </div>
+
+          <p class="mt-3 flex items-center justify-center gap-1.5 text-center text-[0.625rem] font-medium text-ink-400 sm:mt-5">
+            <ShieldCheck size={12} aria-hidden="true" />
+            Prototype mode keeps your data on this device.
+          </p>
+        </div>
+      </div>
+
+      <footer class="relative px-5 pb-3 text-center lg:px-8">
+        <p class="text-[0.5625rem] leading-relaxed text-ink-400">
+          Pamantasan ng Lungsod ng Muntinlupa · University Road, NBP Reservation, Muntinlupa City
+        </p>
+      </footer>
+    </section>
+  </div>
+</BaseLayout>

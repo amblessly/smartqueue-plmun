@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { OnboardingFlow } from '@/components/auth/OnboardingFlow';
+import { pageTransition } from '@/lib/motion';
+---
+
+<BaseLayout
+  title="Set up your account — SmartQueue"
+  description="Add a few details to your SmartQueue account so your campus queue requests are prefilled."
+  noIndex
+>
+  <div transition:name="page" transition:animate={pageTransition}>
+    <OnboardingFlow client:only="react" />
+  </div>
+</BaseLayout>

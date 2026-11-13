@@ -1,0 +1,25 @@
+{
+  "name": "SmartQueue",
+  "short_name": "SmartQueue",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": []
+}
+EOF
+cat > src/pages/index.astro <<'EOF'
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="SmartQueue">
+  <main class="min-h-screen flex items-center justify-center p-6">
+    <div class="text-center space-y-4">
+      <h1 class="text-4xl font-bold">SmartQueue</h1>
+      <p class="text-slate-600">Skip the line. Keep your time.</p>
+      <a href="/dashboard" class="inline-block px-6 py-3 rounded-xl bg-blue-600 text-white font-medium">Get Started</a>
+    </div>
+  </main>
+</BaseLayout>
+EOF
+echo done

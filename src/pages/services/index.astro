@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { ServicesDirectory } from '@/components/services/ServicesDirectory';
+---
+
+<AppLayout
+  title="Campus services — SmartQueue"
+  description="Browse PLMun campus services, check the current line, and get a queue number."
+>
+  <ServicesDirectory client:only="react" />
+</AppLayout>

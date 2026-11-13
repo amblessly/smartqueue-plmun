@@ -1,0 +1,65 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SessionGate } from '@/components/layout/SessionGate';
+import { DesktopSidebar } from '@/components/layout/DesktopSidebar';
+import { MobileTopBar } from '@/components/layout/MobileTopBar';
+import { MobileNav } from '@/components/layout/MobileNav';
+import { NotificationBridge } from '@/components/notifications/NotificationBridge';
+import { pageTransition } from '@/lib/motion';
+
+interface Props {
+  title: string;
+  description?: string;
+  allowGuest?: boolean;
+  allowIncompleteOnboarding?: boolean;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  allowGuest = true,
+  allowIncompleteOnboarding = false,
+  noIndex = true,
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} noIndex={noIndex}>
+  <SessionGate
+    client:load
+    allowGuest={allowGuest}
+    allowIncompleteOnboarding={allowIncompleteOnboarding}
+  />
+
+  <div id="app-content" class="invisible min-h-dvh lg:pl-[17rem]" aria-busy="true">
+    <DesktopSidebar client:load />
+    <MobileTopBar client:load />
+
+    <main
+      id="main-content"
+      class="min-h-[calc(100dvh-4rem)] pb-32 pt-20 sm:pt-20 lg:pb-14 lg:pt-9"
+      transition:name="page"
+      transition:animate={pageTransition}
+    >
+      <div class="page-container">
+        <slot />
+      </div>
+    </main>
+
+    <MobileNav client:load />
+  </div>
+
+  <NotificationBridge client:load />
+
+  <noscript>
+    <div class="fixed inset-0 z-[110] flex items-center justify-center bg-cream-50 p-6 text-center">
+      <div class="max-w-sm">
+        <h1 class="text-xl font-bold text-ink-950">JavaScript is required</h1>
+        <p class="mt-2 text-sm text-ink-500">
+          SmartQueue uses JavaScript for live queue updates and sign-in. Enable it in your browser
+          to continue.
+        </p>
+      </div>
+    </div>
+  </noscript>
+</BaseLayout>

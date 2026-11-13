@@ -1,0 +1,15 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { TicketView } from '@/components/queue/TicketView';
+
+export function getStaticPaths() {
+  return [{ params: { id: 'shell' } }];
+}
+---
+
+<AppLayout
+  title="Your queue ticket — SmartQueue"
+  description="Track your place in line and get notified when it is almost your turn."
+>
+  <TicketView client:only="react" />
+</AppLayout>

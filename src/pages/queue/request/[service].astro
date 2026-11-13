@@ -1,0 +1,21 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { RequestDetailsForm } from '@/components/queue/RequestDetailsForm';
+import { CAMPUS_SERVICES } from '@/lib/data/services';
+
+export function getStaticPaths() {
+  return CAMPUS_SERVICES.map((service) => ({
+    params: { service: service.id },
+    props: { serviceId: service.id },
+  }));
+}
+
+const { serviceId } = Astro.props;
+---
+
+<AppLayout
+  title="Request details — SmartQueue"
+  description="Add the details for your campus queue request before reviewing it."
+>
+  <RequestDetailsForm serviceId={serviceId} client:only="react" />
+</AppLayout>

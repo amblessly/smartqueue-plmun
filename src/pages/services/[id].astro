@@ -1,0 +1,21 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { ServiceDetail } from '@/components/services/ServiceDetail';
+import { CAMPUS_SERVICES } from '@/lib/data/services';
+
+export function getStaticPaths() {
+  return CAMPUS_SERVICES.map((service) => ({
+    params: { id: service.id },
+    props: { serviceId: service.id },
+  }));
+}
+
+const { serviceId } = Astro.props;
+---
+
+<AppLayout
+  title={`Campus service — SmartQueue`}
+  description="See the current line, what to bring, and get a queue number for a PLMun campus service."
+>
+  <ServiceDetail serviceId={serviceId} client:only="react" />
+</AppLayout>

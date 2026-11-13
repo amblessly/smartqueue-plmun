@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes tabFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tab-content-transition {
+  animation: tabFadeSlideIn 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/*
+ * Global motion system.
+ *
+ * Page transitions (Astro view transitions) use the `pageEnter` / `pageExit`
+ * keyframes: incoming content fades in while drifting up 12px, outgoing content
+ * fades out while drifting down 12px. Only `opacity` and `transform` are animated
+ * so the browser can run them on the GPU.
+ */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Content entrance: fade + subtle vertical drift (no delays unless set below). */
+.animate-fade-up {
+  animation: pageEnter 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.animate-fade-up.delay-75 {
+  animation-delay: 75ms;
+}
+.animate-fade-up.delay-150 {
+  animation-delay: 150ms;
+}
+.animate-fade-up.delay-225 {
+  animation-delay: 225ms;
+}
+.animate-fade-up.delay-300 {
+  animation-delay: 300ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-down {
+  animation: fadeDown 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1400ms ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2000ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-content-transition,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-fade-down,
+  .animate-scale-in,
+  .animate-shimmer,
+  .animate-soft-pulse {
+    animation: none;
+  }
+
+  .animate-fade-up.delay-75,
+  .animate-fade-up.delay-150,
+  .animate-fade-up.delay-225,
+  .animate-fade-up.delay-300 {
+    animation-delay: 0ms;
+  }
+
+  /* Disable Astro view transition animations when reduced motion is preferred. */
+  [data-astro-transition-scope] {
+    animation: none !important;
+  }
+}
+@layer components {
+  .ui-card {
+    @apply bg-white border border-slate-200 rounded-2xl p-6 shadow-sm transition-shadow duration-200;
+  }
+  .ui-card:hover {
+    @apply shadow-md;
+  }
+  .card-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  @media (max-width: 1024px) {
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .card-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  }
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8;
+  }
+  .section-gap { @apply mt-8 sm:mt-12; }
+}

@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { DashboardView } from '@/components/dashboard/DashboardView';
+---
+
+<AppLayout
+  title="Home — SmartQueue"
+  description="Your live campus queue, preferred offices, and recent requests."
+>
+  <DashboardView client:only="react" />
+</AppLayout>

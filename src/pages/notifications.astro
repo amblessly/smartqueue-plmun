@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { NotificationsPage } from '@/components/notifications/NotificationsPage';
+---
+
+<AppLayout
+  title="Notifications — SmartQueue"
+  description="Queue reminders, called numbers, and completed requests."
+>
+  <NotificationsPage client:only="react" />
+</AppLayout>

@@ -1,0 +1,21 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { ReviewRequest } from '@/components/queue/ReviewRequest';
+import { CAMPUS_SERVICES } from '@/lib/data/services';
+
+export function getStaticPaths() {
+  return CAMPUS_SERVICES.map((service) => ({
+    params: { service: service.id },
+    props: { serviceId: service.id },
+  }));
+}
+
+const { serviceId } = Astro.props;
+---
+
+<AppLayout
+  title="Review request — SmartQueue"
+  description="Review your campus queue request and join the shared line."
+>
+  <ReviewRequest serviceId={serviceId} client:only="react" />
+</AppLayout>

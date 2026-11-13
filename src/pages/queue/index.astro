@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { QueuePage } from '@/components/queue/QueuePage';
+---
+
+<AppLayout
+  title="My queue — SmartQueue"
+  description="Track your active PLMun campus queue and review past tickets."
+>
+  <QueuePage client:only="react" />
+</AppLayout>

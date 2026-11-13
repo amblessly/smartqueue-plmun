@@ -1,0 +1,1 @@
+import{r as i}from"./index.CVf8TyFT.js";import{l as n,u,e as c}from"./owner.yGoK2lry.js";function l(t){const[r,o]=i.useState([]),[e,a]=i.useState(0),s=i.useCallback(()=>{if(!t){o([]),a(0);return}o(n(t)),a(u(t))},[t]);return i.useEffect(()=>(s(),c(s)),[s]),{notifications:r,unread:e,refresh:s}}export{l as u};
