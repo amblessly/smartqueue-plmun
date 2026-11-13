@@ -33,6 +33,6 @@ npm run preview
 - Astro
 - React
 - Tailwind CSS
-- Supabase (Neon)
+- Neon (Postgres)
 
 That's it. Simple.
