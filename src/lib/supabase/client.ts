@@ -1,2 +1,2 @@
 export function isSupabaseConfigured(): boolean { return false; }
-export function getSupabase(): null { return null; }
+export function getSupabase(): any { return null; }

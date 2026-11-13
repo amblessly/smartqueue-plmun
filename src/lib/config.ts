@@ -1,4 +1,4 @@
-export const BACKEND: 'demo' = 'demo';
+export const BACKEND: 'demo' | 'supabase' = 'demo';
 
 export const IS_DEMO = BACKEND === 'demo';
 
