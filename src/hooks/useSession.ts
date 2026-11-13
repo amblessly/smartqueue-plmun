@@ -4,7 +4,7 @@ import { getCachedSession, getSession, onSessionChange } from '@/lib/auth/sessio
 
 export function useSession() {
   const [session, setSession] = useState<SessionUser | null>(() => getCachedSession());
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const refresh = useCallback(async () => {
     const next = await getSession();
