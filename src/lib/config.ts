@@ -1,11 +1,4 @@
-const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-const requestedMode = import.meta.env.PUBLIC_SMARTQUEUE_MODE;
-
-export const BACKEND: 'demo' | 'supabase' =
-  requestedMode === 'supabase' && Boolean(supabaseUrl && supabaseAnonKey)
-    ? 'supabase'
-    : 'demo';
+export const BACKEND: 'demo' = 'demo';
 
 export const IS_DEMO = BACKEND === 'demo';
 
